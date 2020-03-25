@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="bg-light p-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                    <div id="modalMessage" class="alert alert-{{ category }} col-md-6 w-50 mb-5 m-auto" role="alert">
+                        <p>{{ message|capitalize }}</p>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <h1 class="mb-4">{{ titulo }}</h1>
+                <div class="col-xs-12 col-md-8 col-lg-6 text-center m-auto">
+                    <form class="form-signin" method="POST">
+                        <img class="mb-4" src="{{ url_for('static', filename='img/robo-login.png') }}" alt="" width="72" height="72">
+                        <p class="mb-3">Preencha os campos abaixo</p>
+                        <div class="form-group text-left">
+                            <label>Comando</label>
+                            <input type="text" id="comando" class="form-control" name="comando" value="{{ comando }}" 
+                                    placeholder="Ex.: /comando" required autocomplete="off">
+                        </div>
+                        
+                        <div class="form-group text-left">
+                            <label>Ativo: </label>
+                            
+                            <input type="radio" name="ativo" id="sim" value="1" 
+                                    {% if ativo == 1 or ativo == '1'%}checked="checked"{% endif %} required>
+                            <label for="sim">Sim</label>
+
+                            <input type="radio" name="ativo" id="nao" value="0" 
+                                    {% if ativo == 0 or ativo == '0'%}checked="checked"{% endif %}>
+                            <label for="nao">Não</label>
+                        </div>
+
+                        <div class="form-group text-left pt-3">
+                            <p><b>Dados de Resposta</b></p>
+                            <hr>
+                        </div>
+                        <div class="form-group text-left">
+                            <label>Saída - (Parâmetros entre chaves <b>{}</b>)</label>
+                            <textarea type="text" id="saida" class="form-control area" name="saida" rows="4" 
+                            placeholder="Ex.: Sejá bem vindo, sua requisição está sendo processada. {informacao}" 
+                            required autocomplete="off">{{ saida }}</textarea>
+                        </div>
+
+                        <div class="form-group text-left">
+                            <label>Script - (Identação: 4 espaços) (Função: Seu nome deve ser <b>script</b>)</label>
+                            <textarea type="text" id="script" class="form-control area" name="script" rows="8"
+                            placeholder="Ex.: def script():
+            resposta = 'Resultado do processamento'
+            return {'informacao': resposta}" 
+                            autocomplete="off">{% if script != None %}{{ script }}{% endif %}</textarea>
+                        </div>
+
+                        <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">{{ botao }}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

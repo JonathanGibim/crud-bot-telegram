@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="jumbotron text-center mb-0">
+    <div class="container">
+        <h1>Bot Telegram</h1>
+        <p class="lead text-muted mt-4">
+            Conheça o <b>Bot Telegram</b>, o chat inteligênte desenvolvido pela <b>Nowi</b>!
+        </p>
+        <p class="lead text-muted mt-4">
+            Adaptável ao <b>seu sistema</b>, seguindo <b>suas regras</b>!
+        </p>
+        <p class="mt-4">
+            <a href="/cadastrar/" class="btn btn-secondary my-2">Cadastrar Comando</a>
+            <a href="/comandos/" class="btn btn-primary my-2">Meus Comandos</a>
+        </p>
+    </div>
+</section>
+
+<div class="p-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-8 m-auto">
+                <h2>O que eu sou?</h2>
+                <p>
+                    Olá desenvolvedor! Sou uma ferramenta que irá auxiliar o desenvolvimento
+                    do seu <b>Bot Telegram</b> atráves de um gerenciamento de funções.
+                </p>
+                <p>
+                    Por meio de um <b>CRUD</b> de ações, você pode configurar seu bot para realizar
+                    determinadas funções a partir de um <b>comando</b>.
+                </p>
+                <p>
+                    Meu foco é colaborar com a produtividade do seu negócio! Portanto através de um
+                    código <b>Python</b>, você pode escrever o script desejado para cada ação que seu bot
+                    precisar realizar.
+                </p>
+            </div>
+            <div class="col-4 mt-4">
+                <img src="{{ url_for('static', filename='img/robo-telegram.jpg') }}" class="w-100" alt="Imagem Bot Telegram" title="Bot Telegram">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

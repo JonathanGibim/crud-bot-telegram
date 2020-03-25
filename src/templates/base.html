@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="h-100">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.ico') }}" />  
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <!-- Próprios CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <title>Nowi | Bot Telegram</title>
+</head>
+<body class="d-flex flex-column h-100 bg-light">
+
+    <header>
+        <!-- Inicio menu -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+            <a class="navbar-brand" href="/">
+                <img src="{{ url_for('static', filename='img/logo-telegram.png') }}" width="30" height="30" alt="">
+            </a>
+            <a class="navbar-brand" href="/">Bot Telegram</a>
+
+            <!-- Botão para menu mobile -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item mr-4" id="inicio">
+                        <a class="nav-link" href="/">Pagina Inicial</a>
+                    </li>
+                    <li class="nav-item mr-4" id="cadastrar">
+                        <a class="nav-link" href="/cadastrar/">Cadastrar</a>
+                    </li>
+                    <li class="nav-item mr-4" id="comandos">
+                        <a class="nav-link" href="/comandos/">Listar</a>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+        <!-- Fim menu -->
+    </header>
+
+    <main role="main">
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+    <footer class="text-muted bg-dark footer mt-auto py-1">
+        <div class="container">
+            <p class="float-right pt-3">
+                <a href="#" class="text-white text-decoration-none text-muted">Ir ao topo</a>
+            </p>
+            <p class="pt-3">Desenvolvido por <b>Nowi</b></p>
+        </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{{ url_for('static', filename='js/jquery-3.4.1.slim.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <!-- JS utilizado o modal de deleção -->
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    <!--  Plugin for Sweet Alert -->
+    <script src="{{ url_for('static', filename='js/sweetalert2.js') }}"></script>
+
+    <script type="text/javascript">
+        /* AJUSTA ACTIVE DO MENU */
+        var url_atual = window.location.href;
+        var menu_id = url_atual.split("/")[3];
+        if (menu_id == '') menu_id = 'inicio';
+        $('#'+menu_id).addClass('active');
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="bg-light p-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                    <div id="modalMessage" class="alert alert-{{ category }} col-md-6 w-50 mb-5 m-auto" role="alert">
+                        <p>{{ message|capitalize }}</p>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <h1 class="mb-4">Comandos</h1>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Comando</th>
+                                <th>Saída</th>
+                                <th>Ativo</th>
+                                <th colspan="2">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for comando in comandos %}
+                            <tr>
+                                <td class="pt-3">{{ comando.id_comando }}</td>
+                                <td class="pt-3">{{ comando.comando }}</td>
+                                <td class="pt-3">{{ comando.saida }}</td>
+                                <td class="pt-3">{{ comando.ativo }}</td>
+                                <td>
+                                    <a href="/comandos/{{ comando.id_comando }}/"><i class="material-icons">edit</i></a>
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm" id="{{ comando.id_comando }}" 
+                                        onclick="javascript:excluir_item('comandos',this.id);">
+                                        <i class="material-icons">delete</i>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
