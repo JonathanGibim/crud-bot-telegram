@@ -77,8 +77,8 @@
 
     <script type="text/javascript">
         /* AJUSTA ACTIVE DO MENU */
-        var url_atual = window.location.href;
-        var menu_id = url_atual.split("/")[3];
+        const url_atual = window.location.href;
+        const menu_id = url_atual.split("/")[3];
         if (menu_id == '') menu_id = 'inicio';
         $('#'+menu_id).addClass('active');
     </script>
