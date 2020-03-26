@@ -49,9 +49,12 @@
                         </div>
 
                         <div class="form-group text-left">
-                            <label>Script - (Identação: 4 espaços) (Função: Seu nome deve ser <b>script</b>)</label>
+                            <label>Script - (Identação: 4 espaços) </br>
+                                Função - Seu nome deve ser <b>script</b></br>
+                                Argumento - Um argumento com nome <b>*args</b>
+                            </label>
                             <textarea type="text" id="script" class="form-control area" name="script" rows="8"
-                            placeholder="Ex.: def script():
+                            placeholder="Ex.: def script(*args):
             resposta = 'Resultado do processamento'
             return {'informacao': resposta}" 
                             autocomplete="off">{% if script != None %}{{ script }}{% endif %}</textarea>
