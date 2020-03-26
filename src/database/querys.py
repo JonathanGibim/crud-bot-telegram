@@ -1,7 +1,6 @@
-import sqlite3
-from conf.settings import DATABASE_PATH
 from contextlib import closing
 from database.utils.rows import rows_to_dict, row_to_dict
+from database.config import con
 
 sql_listar = "SELECT id_comando, comando, saida, script, ativo FROM comandos"
 
@@ -46,7 +45,3 @@ def deletar(id_comando):
     with closing(con()) as connection, closing(connection.cursor()) as cursor:
         cursor.execute(sql_remover, (id_comando,))
         connection.commit()
-
-
-def con():
-    return sqlite3.connect(DATABASE_PATH)
