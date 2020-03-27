@@ -1,4 +1,5 @@
 import services
+from database.config import criar_bd
 from sqlite3 import IntegrityError
 from flask import Flask, render_template, request, redirect, flash
 
@@ -25,34 +26,44 @@ def cadastrar_comando():
     if request.method == 'POST':
         try:
             dados_form = request.form.to_dict()
+
+            if dados_form['descricao'] == '':
+                dados_form['descricao'] = None
             if dados_form['script'] == '':
                 dados_form['script'] = None
+
             criado = services.criar(**dados_form)
             flash(f'Comando {criado.id_comando} cadastrado com sucesso!', 'success')
             return redirect('/comandos/')
+
         except IntegrityError:
             flash(f'Oops! Já existe um comando com o nome {dados_form["comando"]}.', 'danger')
-            return render_template('formulario.html', comando=dados_form['comando'], saida=dados_form['saida'],
-                                   ativo=dados_form['ativo'], script=dados_form['script'],
-                                   titulo='Cadastro', botao='Cadastrar')
+            return render_template('formulario.html', comando=dados_form['comando'], descricao=dados_form['descricao'],
+                                   saida=dados_form['saida'], ativo=dados_form['ativo'], 
+                                   script=dados_form['script'], titulo='Cadastro', botao='Cadastrar')
 
 
 @app.route('/comandos/<int:id_comando>/', methods=['GET', 'POST'])
 def editar_comando(id_comando):
     if request.method == 'GET':
         comando = services.localizar(id_comando)
-        return render_template('formulario.html', comando=comando.comando,
+        return render_template('formulario.html', comando=comando.comando, descricao=comando.descricao,
                                saida=comando.saida, ativo=comando.ativo, script=comando.script, titulo='Edição',
                                botao='Alterar')
 
     if request.method == 'POST':
         try:
             dados_form = request.form.to_dict()
+
+            if dados_form['descricao'] == '':
+                dados_form['descricao'] = None
             if dados_form['script'] == '':
                 dados_form['script'] = None
+
             atualizado = services.atualizar(id_comando, **dados_form)
             flash(f'Comando {atualizado.id_comando} alterado com sucesso!', 'success')
             return redirect('/comandos/')
+
         except IntegrityError:
             flash(f'Oops! Já existe um comando com o nome {dados_form["comando"]}.', 'danger')
             return render_template('formulario.html', comando=dados_form['comando'], saida=dados_form['saida'],
@@ -68,4 +79,5 @@ def deletar_comando(id_comando):
 
 
 if __name__ == '__main__':
+    criar_bd()
     app.run(debug=True)

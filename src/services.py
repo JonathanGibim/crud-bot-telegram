@@ -6,25 +6,25 @@ def listar():
     comandos = []
     comandos_bd = querys.listar()
     for comando_bd in comandos_bd:
-        comandos.append(Comando(comando_bd['comando'], comando_bd['saida'], comando_bd['ativo'],
+        comandos.append(Comando(comando_bd['comando'], comando_bd['descricao'], comando_bd['saida'], comando_bd['ativo'],
                                 comando_bd['script'], comando_bd['id_comando']))
     return comandos
 
 
 def localizar(id_comando):
     comando_bd = querys.localizar(id_comando)
-    return Comando(comando_bd['comando'], comando_bd['saida'], comando_bd['ativo'],
+    return Comando(comando_bd['comando'], comando_bd['descricao'], comando_bd['saida'], comando_bd['ativo'],
                    comando_bd['script'], comando_bd['id_comando'])
 
 
-def criar(comando, saida, ativo, script):
-    novo_comando = Comando(comando, saida, ativo, script)
+def criar(comando, descricao, saida, ativo, script):
+    novo_comando = Comando(comando, descricao, saida, ativo, script)
     novo_comando.id_comando = querys.criar(novo_comando)
     return novo_comando
 
 
-def atualizar(id_comando, comando, saida, ativo, script):
-    comando_atualizado = Comando(comando, saida, ativo, script, id_comando)
+def atualizar(id_comando, comando, descricao, saida, ativo, script):
+    comando_atualizado = Comando(comando, descricao, saida, ativo, script, id_comando)
     querys.atualizar(comando_atualizado)
     return comando_atualizado
 

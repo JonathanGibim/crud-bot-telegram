@@ -24,6 +24,13 @@
                             <input type="text" id="comando" class="form-control" name="comando" value="{{ comando }}" 
                                     placeholder="Ex.: /comando" required autocomplete="off">
                         </div>
+
+                        <div class="form-group text-left">
+                            <label>Descrição</label>
+                            <input type="text" id="descricao" class="form-control" name="descricao" 
+                                    value="{% if descricao != None %}{{ descricao }}{% endif %}" 
+                                    placeholder="Ex.: [parametro]" autocomplete="off">
+                        </div>
                         
                         <div class="form-group text-left">
                             <label>Ativo: </label>
@@ -51,10 +58,10 @@
                         <div class="form-group text-left">
                             <label>Script - (Identação: 4 espaços) </br>
                                 Função - Seu nome deve ser <b>script</b></br>
-                                Argumento - Um argumento com nome <b>*args</b>
+                                Argumento - Apenas <b>um</b> argumento <b>Opcional</b>
                             </label>
                             <textarea type="text" id="script" class="form-control area" name="script" rows="8"
-                            placeholder="Ex.: def script(*args):
+                            placeholder="Ex.: def script(): - def script(arg):
             resposta = 'Resultado do processamento'
             return {'informacao': resposta}" 
                             autocomplete="off">{% if script != None %}{{ script }}{% endif %}</textarea>

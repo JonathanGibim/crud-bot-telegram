@@ -1,6 +1,7 @@
 class Comando:
-    def __init__(self, comando, saida, ativo, script, id_comando=None):
+    def __init__(self, comando, descricao, saida, ativo, script, id_comando=None):
         self.__comando = comando
+        self.__descricao = descricao
         self.__saida = saida
         self.__ativo = ativo
         self.__script = script
@@ -9,6 +10,10 @@ class Comando:
     @property
     def comando(self):
         return self.__comando
+
+    @property
+    def descricao(self):
+        return self.__descricao
 
     @property
     def saida(self):
