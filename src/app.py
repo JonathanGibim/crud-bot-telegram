@@ -79,5 +79,4 @@ def deletar_comando(id_comando):
 
 
 if __name__ == '__main__':
-    criar_bd()
     app.run(debug=True)
