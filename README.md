@@ -26,6 +26,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias e bibliotecas:
 É preciso bastante cuidado com o preenchimento do campo Scripts dentro do crud, pois apesar de sua capacidade de uso ser
 extremamente vasta, é perigosa!
 
-- Caso ainda não tenha o banco de dados criado, execute: `python _database_.py`. Isso irá criá-lo no mesmo diretório do arquivo executado;
+- Caso ainda não tenha o banco de dados criado, execute: `python _database_.py`. Isso irá criá-lo no local onde foi definido na variável de ambiente no caminho `src/conf/.env`;
 
 - Assista ao vídeo explicação para cessar outras dúvidas: [Vídeo](https://www.youtube.com/watch?v=40KhPfAmLWo)
